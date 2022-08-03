@@ -1,0 +1,22 @@
+{
+  "name": "apimundopartitura",
+  "version": "1.0.0",
+  "description": "Aprenda musica !!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pw3",
+    "nodejs",
+    "etec",
+    "barueri",
+    "3DS"
+  ],
+  "author": "Jonathan Carvalho de Abreu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3"
+  }
+}
