@@ -4,7 +4,7 @@
   "description": "Aprenda musica !!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "pw3",
@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.23.2"
   }

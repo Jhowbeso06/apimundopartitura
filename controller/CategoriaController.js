@@ -1,102 +1,114 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-const modelCategoria = require('../model/Categoria');
+const modelCategoria = require("../model/Categoria");
+
+router.get("/listarCategoria", (req, res) => {
 
 
+    res.send("ROTA DE LISTAR CATEGORIA DE INSTRUMENTO ")
 
-router.get('/listarCategoria', (req, res)=>{
-
-
-
-    modelCategoria.findAll()
-    .then(
-        (categorias)=>{
-            return res.status(200).json(categorias);
-        }
-    ).catch(
-        (erro)=>{
-            return res.status(400).json({
-                erroStatus: true,
-                erroMessagem: 'Houve um erro ao selecionar os dados de categoria',
-                erroBancoDados: erro
-            });
-        }
-    );
-
+  modelCategoria
+    .findAll()
+    .then((categorias) => {
+      return res.status(200).json(categorias);
+    })
+    .catch((erro) => {
+      return res.status(400).json({
+        erroStatus: true,
+        erroMessagem: "Houve um erro ao selecionar os dados de categoria",
+        erroBancoDados: erro,
+      });
+    });
 });
 
 
 router.post('/inserirCategoria', (req, res)=>{
+  
 
-    res.send('TESTE DE ROTA CADASTRO DE CATEGORIAS DE INSTRUMENTOS !!  ');
-
-
-    modelCategoria.findAll()
-    .then(
-        (categorias)=>{
-            return res.status(200).json(categorias);
+    res.send("ROTA DE ENTRADA CATEGORIA DE INSTRUMENTO ")
+    
+    let {nome_categoria} = req.body;
+    
+    modelCategoria.create(
+        {nome_categoria}
+    ).then(
+        ()=>{
+                return res.status(201).json({
+                    erroStatus: false,
+                    menssagemStatus: 'Categoria inserida com sucesso!'
+            });
         }
     ).catch(
         (erro)=>{
-            return res.status(400).json({
-                erroStatus: true,
-                erroMessagem: 'Houve um erro ao selecionar os dados de categoria',
-                erroBancoDados: erro
-            });
+                    return res.status(400).json({
+                        erroStatus: true,
+                        erroMessagem: 'Houve um erro ao cadastrar a categoria',
+                        erroBancoDados: erro
+                    });
         }
     );
 
-
 });
+
 
 router.put('/alterarCategoria', (req, res)=>{
 
-    res.send('----TESTE DE ROTA ALTERAÇÃO DE CATEGORIAS DE INSTRUMENTOS ');
+    let {id, nome_categoria} = req.body;
 
 
-    modelCategoria.findAll()
-    .then(
-        (categorias)=>{
-            return res.status(200).json(categorias);
-        }
-    ).catch(
+
+    res.send("ROTA DE ALTERAR CATEGORIA DE INSTRUMENTO ")
+
+    modelCategoria.update(
+        {nome_categoria},
+        {where:{id}}
+    ).then( ()=>{
+
+        return res.status(200).json({
+            erroStatus: false,
+            menssagemStatus: 'Categoria alterada com sucesso!'
+        });
+
+    }).catch(
         (erro)=>{
-            return res.status(400).json({
-                erroStatus: true,
-                erroMessagem: 'Houve um erro ao selecionar os dados de categoria',
-                erroBancoDados: erro
-            });
+                    return res.status(400).json({
+                        erroStatus: true,
+                        erroMessagem: 'Houve um erro ao alterar a categoria',
+                        erroBancoDados: erro
+                    });
         }
     );
-
-
 
 });
 
-router.delete('/excluirCategoria/:id', (req, res)=>{
-
-    res.send('----TESTE DE ROTA EXCLUSÃO DE CATEGORIAS COM CRITÉRIOS----');
 
 
+router.delete('/excluirCategoria/:id', (req, res) => {
 
-    modelCategoria.findAll()
-    .then(
-        (categorias)=>{
-            return res.status(200).json(categorias);
-        }
-    ).catch(
-        (erro)=>{
+    let { id } = req.params;
+
+    res.send("ROTA DE DELETAR CATEGORIA DE INSTRUMENTO ")
+
+    modelCategoria.destroy(
+        { where: { id } }
+    ).then(() => {
+
+        return res.status(200).json({
+            erroStatus: false,
+            menssagemStatus: 'Categoria excluida com sucesso!'
+        });
+
+    }).catch(
+        (erro) => {
             return res.status(400).json({
                 erroStatus: true,
-                erroMessagem: 'Houve um erro ao selecionar os dados de categoria',
+                erroMessagem: 'Houve um erro ao excluir a categoria',
                 erroBancoDados: erro
             });
         }
     );
-
-
 
 });
 
