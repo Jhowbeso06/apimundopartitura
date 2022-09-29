@@ -20,14 +20,13 @@ PARAMETROS:
 const Categoria = connection.define(
     "tbl_categoria",
     {
-        cod_categoria: {
-            type:Sequelize.INT(),
-            allowNull:true
-            }
+        
+
+
     }
 
 );
 
-// Categoria.sync({force:true});
+ //Categoria.sync({force:true});
 
 module.exports = Categoria;

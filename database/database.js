@@ -17,7 +17,7 @@ SEQULEIZE.
     4.2 - DIALETO DO BANCO DE DADOS
 
 */
-const connection = new Sequilize(
+const connection = new Sequelize(
 
 "apimundopartitura",
 "root",
