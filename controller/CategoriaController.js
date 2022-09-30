@@ -7,7 +7,7 @@ const modelCategoria = require("../model/Categoria");
 router.get("/listarCategoria", (req, res) => {
 
 
-    res.send("ROTA DE LISTAR CATEGORIA DE INSTRUMENTO ")
+
 
   modelCategoria
     .findAll()
@@ -25,10 +25,7 @@ router.get("/listarCategoria", (req, res) => {
 
 
 router.post('/inserirCategoria', (req, res)=>{
-  
-
-    res.send("ROTA DE ENTRADA CATEGORIA DE INSTRUMENTO ")
-    
+      
     let {nome_categoria} = req.body;
     
     modelCategoria.create(
@@ -59,7 +56,6 @@ router.put('/alterarCategoria', (req, res)=>{
 
 
 
-    res.send("ROTA DE ALTERAR CATEGORIA DE INSTRUMENTO ")
 
     modelCategoria.update(
         {nome_categoria},
@@ -89,7 +85,6 @@ router.delete('/excluirCategoria/:id', (req, res) => {
 
     let { id } = req.params;
 
-    res.send("ROTA DE DELETAR CATEGORIA DE INSTRUMENTO ")
 
     modelCategoria.destroy(
         { where: { id } }
