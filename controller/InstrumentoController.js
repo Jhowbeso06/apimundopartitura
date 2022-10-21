@@ -2,44 +2,43 @@ const express = require("express");
 
 const router = express.Router();
 
-const modelCategoria = require("../model/Categoria");
+const modelInstrumento = require("../model/Instrumento");
 
-router.get("/listarCategoria", (req, res) => {
+router.get("/listarInstrumento", (req, res) => {
 
-
-  modelCategoria
+  modelInstrumento 
     .findAll()
-    .then((categorias) => {
-      return res.status(200).json(categorias);
+    .then((Instrumento) => {
+      return res.status(200).json(Instrumento);
     })
     .catch((erro) => {
       return res.status(400).json({
         erroStatus: true,
-        erroMessagem: "Houve um erro ao selecionar os dados de categoria",
+        erroMessagem: "Houve um erro ao selecionar os dados de Instrumento",
         erroBancoDados: erro,
       });
     });
 });
 
 
-router.post('/inserirCategoria', (req, res)=>{
+router.post('/inserirInstrumento', (req, res)=>{
       
-    let {nome_categoria} = req.body;
+    let {nome_instrumento} = req.body;
     
-    modelCategoria.create(
-        {nome_categoria}
+    modelInstrumento.create(
+        {nome_instrumento}
     ).then(
         ()=>{
                 return res.status(201).json({
                     erroStatus: false,
-                    menssagemStatus: 'Categoria inserida com sucesso!'
+                    menssagemStatus: 'Instrumento inserido com sucesso!'
             });
         }
     ).catch(
         (erro)=>{
                     return res.status(400).json({
                         erroStatus: true,
-                        erroMessagem: 'Houve um erro ao cadastrar a categoria',
+                        erroMessagem: 'Houve um erro ao cadastrar a Instrumento',
                         erroBancoDados: erro
                     });
         }
@@ -48,28 +47,28 @@ router.post('/inserirCategoria', (req, res)=>{
 });
 
 
-router.put('/alterarCategoria', (req, res)=>{
+router.put('/alterarInstrumento', (req, res)=>{
 
-    let {id, nome_categoria} = req.body;
-
-
+    let {id, nome_instrumento} = req.body;
 
 
-    modelCategoria.update(
-        {nome_categoria},
+
+
+    modelInstrumento.update(
+        {nome_instrumento},
         {where:{id}}
     ).then( ()=>{
 
         return res.status(200).json({
             erroStatus: false,
-            menssagemStatus: 'Categoria alterada com sucesso!'
+            menssagemStatus: 'Instrumento alterada com sucesso!'
         });
 
     }).catch(
         (erro)=>{
                     return res.status(400).json({
                         erroStatus: true,
-                        erroMessagem: 'Houve um erro ao alterar a categoria',
+                        erroMessagem: 'Houve um erro ao alterar a Instrumento',
                         erroBancoDados: erro
                     });
         }
@@ -79,25 +78,23 @@ router.put('/alterarCategoria', (req, res)=>{
 
 
 
-router.delete('/excluirCategoria/:id', (req, res) => {
-
+router.delete('/excluirInstrumento/:id', (req, res) => {
+    
     let { id } = req.params;
-
-
-    modelCategoria.destroy(
+    modelInstrumento.destroy(
         { where: { id } }
     ).then(() => {
 
         return res.status(200).json({
             erroStatus: false,
-            menssagemStatus: 'Categoria excluida com sucesso!'
+            menssagemStatus: 'Instrumento excluida com sucesso!'
         });
 
     }).catch(
         (erro) => {
             return res.status(400).json({
                 erroStatus: true,
-                erroMessagem: 'Houve um erro ao excluir a categoria',
+                erroMessagem: 'Houve um erro ao excluir a Instrumento',
                 erroBancoDados: erro
             });
         }

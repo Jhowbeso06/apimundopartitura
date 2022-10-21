@@ -2,14 +2,18 @@ const express = require('express');
 
 const categoriaController = require('./controller/CategoriaController');
 
+const instrumentoController = require('./controller/InstrumentoController')
+
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 
-app.use('/', categoriaController);
+app.use('/',categoriaController);
 
+app.use('/',instrumentoController);
 
 
 
