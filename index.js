@@ -2,7 +2,7 @@ const express = require('express');
 
 const categoriaController = require('./controller/CategoriaController');
 
-const instrumentoController = require('./controller/InstrumentoController')
+const instrumentoController = require('./controller/CategoriaInstrumento');
 
 
 const app = express();

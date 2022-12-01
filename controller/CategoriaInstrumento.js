@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 
 const router = express.Router();
@@ -19,6 +21,26 @@ router.get("/listarInstrumento", (req, res) => {
       });
     });
 });
+
+
+
+router.get("/listarInstrumento/:id", (req, res) => {
+    let {id} = req.params;
+
+    Instrumento
+      .findByPk(id)
+      .then((instrumento) => {
+        return res.status(200).json(instrumento);
+      })
+      .catch((erro) => {
+        return res.status(400).json({
+          erroStatus: true,
+          erroMessagem: "Houve um erro ao selecionar os dados de categoria",
+          erroBancoDados: erro,
+        });
+      });
+  });
+
 
 
 router.post('/inserirInstrumento', (req, res)=>{

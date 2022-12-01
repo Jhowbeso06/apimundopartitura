@@ -1,4 +1,5 @@
 const express = require("express");
+const Categoria = require("../model/Categoria");
 
 const router = express.Router();
 
@@ -20,6 +21,25 @@ router.get("/listarCategoria", (req, res) => {
       });
     });
 });
+
+router.get("/listarCategoria/:id", (req, res) => {
+    let {id} = req.params;
+
+    Categoria
+      .findByPk(id)
+      .then((categorias) => {
+        return res.status(200).json(categorias);
+      })
+      .catch((erro) => {
+        return res.status(400).json({
+          erroStatus: true,
+          erroMessagem: "Houve um erro ao selecionar os dados de categoria",
+          erroBancoDados: erro,
+        });
+      });
+  });
+
+
 
 
 router.post('/inserirCategoria', (req, res)=>{

@@ -14,6 +14,6 @@ const Instrumento = connection.define(
     }
 );
 
-//Instrumento.sync({force:true});
+ //Instrumento.sync({force:true});
 
 module.exports = Instrumento;
