@@ -2,6 +2,9 @@
 
 const express = require("express");
 
+const Instrumento = require("../model/Instrumento");
+
+
 const router = express.Router();
 
 const modelInstrumento = require("../model/Instrumento");
